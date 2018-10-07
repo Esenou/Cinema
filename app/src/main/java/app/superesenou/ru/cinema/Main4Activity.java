@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
+import app.superesenou.ru.cinema.adapter.Helper;
 import app.superesenou.ru.cinema.models.AnswerKinoAnons;
 import app.superesenou.ru.cinema.models.AnswerKinoafisha;
 
@@ -45,7 +46,9 @@ public class Main4Activity extends AppCompatActivity {
             txtBefore.setText("Дата выхода :"+Html.fromHtml(vh.getBefore()));
             txtEntered.setText(vh.getEntered());
             txtUrl.setText("Ccылка :"+"https://kinoafisha.ua/"+vh.getUrl());
-            Picasso.get().load("https://kinoafisha.ua/"+vh.getImage()).into(imageView);
+
+            Helper url=new Helper();
+            Picasso.get().load("https://kinoafisha.ua/"+url.makeImageBetter(vh.getImage())).into(imageView);
 
 
           }

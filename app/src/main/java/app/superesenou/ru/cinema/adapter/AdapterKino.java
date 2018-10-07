@@ -51,19 +51,8 @@ public class AdapterKino extends RecyclerView.Adapter<AdapterKino.ViewHolder> {
         AnswerKinoafisha.Result vh = contact.get(position);
          contactTwo=vh.getSessions();
          //AnswerKinoafisha.Result.Sessions vhTwo = contactTwo.get(position);
-
-        char  b[]=new char[vh.getImage().length()];
-        char a = 0;
-        for(int i=0;i<vh.getImage().length();i++){
-
-            if(i==27 && i==28){
-               continue;
-            }else {
-                b[i] =vh.getImage().charAt(i);
-            }
-        }
-        String str = String.valueOf(b);
-        Picasso.get().load("https://kinoafisha.ua/" + str).into(holder.imagekino);
+        Helper url=new Helper();
+        Picasso.get().load("https://kinoafisha.ua/" +url.makeImageBetter(vh.getImage())).into(holder.imagekino);
         holder.txtNameKino.setText(vh.getName());
 
 

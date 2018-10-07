@@ -7,11 +7,15 @@ import android.text.Html;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.squareup.picasso.Picasso;
 
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
+import app.superesenou.ru.cinema.adapter.Helper;
 import app.superesenou.ru.cinema.models.AnswerKinoafisha;
+
+import static java.security.AccessController.getContext;
 
 public class Main3Activity extends AppCompatActivity {
 
@@ -37,7 +41,7 @@ public class Main3Activity extends AppCompatActivity {
         if (bundle!=null){
             String json =bundle.getString("esen");
             AnswerKinoafisha.Result vh = new Gson().fromJson(json,AnswerKinoafisha.Result.class);
-          //  name.setText(vh.getName());
+            name.setText(vh.getName());
             countries.setText("Cтрана :"+vh.getCountries());
             age_Limit.setText("Возраст :"+vh.getAge_limit());
             actors.setText("Актёры :"+ Html.fromHtml(vh.getActors()));
@@ -46,26 +50,13 @@ public class Main3Activity extends AppCompatActivity {
             vote.setText("Оценка :"+vh.getVote());
             vote_Count.setText("Проголосовали :"+vh.getCount_vote());
             txtUrl.setText("Ccылка :"+"https://kinoafisha.ua/"+vh.getUrl());
-
-            char  b[]=new char[vh.getImage().length()];
-           String c=vh.getImage();
-            for(int i=0;i<c.length();i++){
-                    if(i<27) {
-                        b[i] = c.charAt(i);
-                    }
-                    else if(i>29){
-                        b[i]=c.charAt(i);
-                    }
-                    else{
-                        continue;
-                    }
-            }
-            String str = String.valueOf(b);
-            countries.setText("https://kinoafisha.ua"+str);
-            Picasso.get().load("https://kinoafisha.ua"+str).into(imgThree);
-
+            Helper url=new Helper();
+            url.makeImageBetter(vh.getImage());
+            Picasso.get().load(String.valueOf("https://kinoafisha.ua"+url.makeImageBetter(vh.getImage()))).into(imgThree);
 
         }
+
+
 
         if(getSupportActionBar()!=null){
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -80,4 +71,7 @@ public class Main3Activity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
 }
+

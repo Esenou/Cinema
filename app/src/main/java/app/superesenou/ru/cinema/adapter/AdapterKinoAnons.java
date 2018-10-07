@@ -46,7 +46,9 @@ public class AdapterKinoAnons extends RecyclerView.Adapter<AdapterKinoAnons.View
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         AnswerKinoAnons.Result vh=contact.get(position);
-        Picasso.get().load("https://kinoafisha.ua/" + vh.getImage()).into(holder.imageView);
+        Helper url=new Helper();
+
+        Picasso.get().load("https://kinoafisha.ua/" + url.makeImageBetter(vh.getImage())).into(holder.imageView);
         holder.txtName.setText(vh.getName());
 
     }
