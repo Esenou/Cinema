@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Кинотеатры</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="left_page">CЕГОДНЯ В КИНО</string>
+    <string name="middle_page">middle</string>
+    <string name="right_page">СКОРО В КИНО</string>
+</resources>
